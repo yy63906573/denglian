@@ -50,7 +50,7 @@ public class ProofOfWork {
         //昵称
         String nickname = "yy6390673";
         wankuang(nickname, 5);
-        //mine(nickname, 5);
+        wankuang(nickname, 5);
        
     }
 }
