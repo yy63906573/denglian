@@ -85,7 +85,7 @@ public class RSAPOW {
         // 获取私钥
         PrivateKey privateKey = keyPair.getPrivate();
 
-        System.out.println("🔐 Generated RSA key pair:");
+        System.out.println("Generated RSA key pair:");
         System.out.println("Public Key: " + encodeKey(publicKey));
         System.out.println("Private Key: " + encodeKey(privateKey));
 
@@ -94,10 +94,10 @@ public class RSAPOW {
 
         // Step 3: 签名
         String signature = signData(privateKey, powData);
-        System.out.println("✍️  Signature: " + signature);
+        System.out.println("Signature: " + signature);
 
         // Step 4: 验证
         boolean isValid = verifySignature(publicKey, powData, signature);
-        System.out.println("✅ Signature valid: " + isValid);
+        System.out.println("Signature valid: " + isValid);
     }
 }
