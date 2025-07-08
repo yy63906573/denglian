@@ -49,8 +49,8 @@ public class ProofOfWork {
     public static void main(String[] args) {
         //昵称
         String nickname = "yy6390673";
+        wankuang(nickname, 4);
         wankuang(nickname, 5);
-        //mine(nickname, 5);
        
     }
 }
