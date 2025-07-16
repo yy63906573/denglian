@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./MyERC721.sol";
-import "./MyERC20V2.sol";
+import "./MyNFT.sol";
+import "./MyERC20V3.sol";
 
 contract NFTMarket is ITokenRecipient {
-    MyERC20V2 public paymentToken;
-    MyERC721 public nft;
+    MyERC20V3 public paymentToken;
+    MyNFT public nft;
 
     struct Listing {
         address seller;

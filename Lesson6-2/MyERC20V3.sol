@@ -6,7 +6,7 @@ interface ITokenRecipient {
     function tokensReceived(address from, uint256 amount, bytes calldata data) external returns(bool);
 }
 
-contract MyERC20V2{
+contract MyERC20V3{
     string public name; 
     string public symbol; 
     uint8 public decimals; 
