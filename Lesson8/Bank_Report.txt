@@ -1,0 +1,28 @@
+[⠒] Compiling...
+No files changed, compilation skipped
+
+Ran 8 tests for test/Bank.t.sol:BankTest
+[PASS] testAdminWithdraw() (gas: 115099)
+Logs:
+  admin balance before withdraw: 0
+  admin balance withdraw: 1000000000000000000
+
+[PASS] testNotAdminWithdraw() (gas: 77164)
+[PASS] testTopDepositorMultipleDeposits() (gas: 241019)
+[PASS] testTopDepositorsFourUsers() (gas: 229768)
+[PASS] testTopDepositorsSingle() (gas: 75060)
+[PASS] testTopDepositorsThreeUsers() (gas: 193730)
+[PASS] testTopDepositorsTwoUsers() (gas: 134451)
+[PASS] test_checkBalance() (gas: 74891)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 4.70ms (18.48ms CPU time)
+
+Ran 2 tests for test/Counter.t.sol:CounterTest
+[PASS] testFuzz_SetNumber(uint256) (runs: 257, μ: 32354, ~: 32354)
+[PASS] test_Increment() (gas: 35689)
+Logs:
+  this is test_Increment
+
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 20.42ms (23.82ms CPU time)
+
+Ran 2 test suites in 24.47ms (25.12ms CPU time): 10 tests passed, 0 failed, 0 skipped (10 total tests)
+yy63906573@DESKTOP-BOQFSFE:/mnt/d/denglian/Mysolidity$ 
