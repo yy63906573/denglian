@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ERC20 转账记录</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f9fc;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #222;
+      margin-bottom: 20px;
+    }
+    button {
+      background-color: #0069ff;
+      border: none;
+      color: white;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-right: 10px;
+      transition: background-color 0.3s ease;
+    }
+    button:disabled {
+      background-color: #999;
+      cursor: not-allowed;
+    }
+    button:hover:not(:disabled) {
+      background-color: #004bb5;
+    }
+    #status {
+      margin: 15px 0;
+      font-weight: bold;
+      font-size: 16px;
+      color: #333;
+    }
+    h2 {
+      color: #444;
+      margin-top: 20px;
+      text-align: center;
+      word-break: break-all;
+    }
+    .table-wrapper {
+      overflow-x: auto;
+      margin-top: 25px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 800px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px 8px;
+      text-align: center;
+      font-size: 14px;
+    }
+    th {
+      background-color: #0069ff;
+      color: white;
+      font-weight: 600;
+    }
+    a {
+      color: #0069ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📊 我的 ERC20 转账记录</h1>
+    <button id="scan">📦 扫描区块记录</button>
+    <button id="connect">🔐 连接钱包查看我的记录</button>
+    <div id="status"></div>
+    <h2 id="address"></h2>
+
+    <div class="table-wrapper">
+      <table id="records">
+        <thead>
+          <tr>
+            <th>转出地址</th>
+            <th>转入地址</th>
+            <th>金额</th>
+            <th>交易 Hash</th>
+            <th>区块</th>
+            <th>交易时间</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script type="module">
+    const status = document.getElementById('status')
+    const scanBtn = document.getElementById('scan')
+    const connectBtn = document.getElementById('connect')
+    const addressElem = document.getElementById('address')
+    const tbody = document.querySelector('#records tbody')
+
+    scanBtn.onclick = async () => {
+      scanBtn.disabled = true
+      connectBtn.disabled = true
+      status.innerText = '⏳ 正在扫描区块，请稍候...'
+
+      try {
+        const res = await fetch('/api/scan')
+        const result = await res.json()
+        if (result.success) {
+          status.innerText = `✅ 扫描完成，共插入 ${result.count} 条记录`
+        } else {
+          status.innerText = `❌ 扫描失败：${result.error || '未知错误'}`
+        }
+      } catch (e) {
+        status.innerText = `❌ 网络请求失败：${e.message}`
+      } finally {
+        scanBtn.disabled = false
+        connectBtn.disabled = false
+      }
+    }
+
+    connectBtn.onclick = async () => {
+      if (!window.ethereum) {
+        alert('请安装钱包插件（MetaMask 等）！')
+        return
+      }
+      try {
+        const [addr] = await ethereum.request({ method: 'eth_requestAccounts' })
+        addressElem.innerText = `当前地址：${addr}`
+
+        status.innerText = '📡 加载转账记录中...'
+        const res = await fetch(`/api/transfers/${addr}`)
+        const data = await res.json()
+
+        if (data.length === 0) {
+          status.innerText = 'ℹ️ 当前地址无转账记录，请先扫描区块。'
+          tbody.innerHTML = ''
+        } else {
+          status.innerText = `共找到 ${data.length} 条转账记录`
+          tbody.innerHTML = data.map(tx => `
+            <tr>
+              <td>${tx.from_address}</td>
+              <td>${tx.to_address}</td>
+              <td>${tx.amount}</td>
+              <td><a href="https://sepolia.etherscan.io/tx/${tx.tx_hash}" target="_blank" rel="noopener noreferrer">查看</a></td>
+              <td>${tx.block_number}</td>
+              <td>${new Date(tx.timestamp * 1000).toLocaleString()}</td>
+            </tr>
+          `).join('')
+        }
+      } catch (e) {
+        status.innerText = `❌ 连接钱包或加载数据失败：${e.message}`
+      }
+    }
+  </script>
+</body>
+</html>
