@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TokenBank - Permit2 存款</title>
+  <link rel="stylesheet" href="permit2.css">
+  <script src="https://cdn.jsdelivr.net/npm/viem/dist/viem.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/viem/chains.js"></script>
+</head>
+<body>
+    <!--
+        实现approve和deposit的功能
+        1. 使用Permit2授权Token给Permit2合约
+    -->
+  <h1>🪙 TokenBank 存款（Permit2）</h1>
+
+  <div id="wallet">未连接</div>
+  <div id="balance">余额：-</div>
+
+  <input type="text" id="amount" placeholder="请输入存款数量" />
+  <button id="approve">授权 Token 给 Permit2</button>
+  <button id="deposit">使用 Permit2 存款</button>
+
+  <script type="module" src="src/permit2.ts"></script>
+</body>
+</html>
