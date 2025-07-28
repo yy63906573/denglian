@@ -22,7 +22,7 @@ const withdrawBtn = document.getElementById('withdrawBtn')!;
 const addressSpan = document.getElementById('address')!;
 const balanceSpan = document.getElementById('balance')!;
 const depositSpan = document.getElementById('deposit')!;
-// const privateKey = "0x47c972973e1260e754a89977e5d678bac9681c0902391b79fcdfab6ae68aeed4";
+
 const privateKey = "0x80Ee32778108B44D966923E85eE46D9C5c50dCb7";
 let account: `0x${string}` | null = null;
 
