@@ -30,8 +30,8 @@ const rpcUrl = 'https://sepolia.infura.io/v3/ec27bdf38453436683b5f6438a97741f'; 
 
 // EOA 账户，从私钥创建
 // !! 在实际应用中，绝不能将私钥明文保存在代码中，应通过钱包（如 MetaMask）获取 !!
-const account = privateKeyToAccount('0x85f4aa9e8a737a0beeaa3b4565ef466e00edcfcd719d7584ba731c158ccf35da');
-const txaccount = privateKeyToAccount('0x47c972973e1260e754a89977e5d678bac9681c0902391b79fcdfab6ae68aeed4');
+const account = privateKeyToAccount('0x85f4aa9e8a737a0beeaa3****84ba731c158ccf35da');
+const txaccount = privateKeyToAccount('0x47c972973e1260e7******9fcdfab6ae68aeed4');
 
 // 委托合约的地址。
 const delegateContractAddress = '0x4c95eFfe330313F6eE14243c5AdDaEFe953B7427';
