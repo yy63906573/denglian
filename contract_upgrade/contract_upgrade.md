@@ -1,0 +1,6 @@
+可升级合约地址 sepolia 测试网已经开源
+Deployed NFT-contract:  0x2630E3a6Dfb4119097f19B3D21fab8ec568cF046
+Deployed UUPSProxy-contract:  0x046792877fc00cb0eA298c40Ca9daF1dfF1a783f
+Deployed NFTMarketV1-contract:  0x6B71ee71BebA8E029A7c4cbbb7Ca4FB867343F38
+Deployed NFTMarketV2-contract:  0xd560891A05821B3E8EbBa83eaafc56b888672E51
+
